@@ -1,35 +1,39 @@
-// DashboardToolbar.tsx
 import React, { useState } from "react";
 import { ChartType, DisplayMode } from "./types";
+import { STATES, MAX_STATES } from "../constants/constants";
 
 type DashboardToolbarProps = {
-  selectedStates: string[];
-  addState: (state: string) => void;
-  displayMode: DisplayMode;
-  setDisplayMode: (mode: DisplayMode) => void;
-  chartType: ChartType;
-  setChartType: (type: ChartType) => void;
+  stateControl: {
+    selectedStates: string[];
+    addState: (state: string) => void;
+  };
+  displayControl: {
+    displayMode: DisplayMode;
+    setDisplayMode: (mode: DisplayMode) => void;
+  };
+  chartControl: {
+    chartType: ChartType;
+    setChartType: (type: ChartType) => void;
+  };
 };
 
-const STATES = ["TN", "WA", "MD", "OH", "FL", "AZ", "WI", "RI", "GA", "KY"];
-const MAX_STATES = 5;
-
 const DashboardToolbar = ({
-  selectedStates,
-  addState,
-  displayMode,
-  setDisplayMode,
-  chartType,
-  setChartType,
+  stateControl,
+  displayControl,
+  chartControl,
 }: DashboardToolbarProps) => {
   const [selectedOption, setSelectedOption] = useState("");
+  const { selectedStates, addState } = stateControl;
+  const { displayMode, setDisplayMode } = displayControl;
+  const { chartType, setChartType } = chartControl;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
-    setSelectedOption(value);
+    setSelectedOption("");
+  
+    // Only add a state if the user selected a valid one
     if (value) {
       addState(value);
-      setSelectedOption("");
     }
   };
 
@@ -41,15 +45,21 @@ const DashboardToolbar = ({
         disabled={selectedStates.length >= MAX_STATES}
         className="state-select"
       >
+        {/* Dropdown to select a state; only show states that have not already been selected */}
         <option value="">Select a state</option>
-        {STATES.filter((s) => !selectedStates.includes(s)).map((state) => (
-          <option key={state} value={state}>{state}</option>
+        {STATES.filter((st) => !selectedStates.includes(st)).map((state) => (
+          <option key={state} value={state}>
+            {state}
+          </option>
         ))}
       </select>
 
       <div className="radio-group">
         <fieldset>
           <legend>Data Type</legend>
+
+          {/* Show graph for cases */}
+
           <label>
             <input
               type="radio"
@@ -60,6 +70,9 @@ const DashboardToolbar = ({
             />
             Cases
           </label>
+
+          {/* Show graph for hospitalizations */}
+
           <label>
             <input
               type="radio"
@@ -74,6 +87,9 @@ const DashboardToolbar = ({
 
         <fieldset>
           <legend>Chart Type</legend>
+
+          {/* Bar Chart Type */}
+
           <label>
             <input
               type="radio"
@@ -84,6 +100,9 @@ const DashboardToolbar = ({
             />
             Bar
           </label>
+
+          {/* Line Chart Type */}
+
           <label>
             <input
               type="radio"

@@ -32,13 +32,16 @@ const StatePanel = ({
         <div className="panel-actions">
           <button className="action-btn" onClick={() => moveState(index, -1)}>↑</button>
           <button className="action-btn" onClick={() => moveState(index, 1)}>↓</button>
-          <button className="action-btn destructive" onClick={() => removeState(name)}>✕</button>
+          <button className="action-btn remove" onClick={() => removeState(name)}>✕</button>
         </div>
       </div>
       <div className="panel-content">
+        {/* Hover details column */}
         <div className="hover-col">
-          <HoverDetails data={hover} />
+          <HoverDetails hoveredDate={hover?.date ?? null} dataSeries={data} displayMode={displayMode}/>
         </div>
+        {/* Covid Chart*/}
+
         <div className="chart-col">
           <CovidChart
             data={data}

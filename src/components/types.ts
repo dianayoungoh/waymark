@@ -1,6 +1,7 @@
 // types.ts
 export type CovidData = {
     date: string;
+    cases?: { total?: number | null };
     tests?: { pcr?: { total?: number | null } };
     outcomes?: {
       recovered?: number | null;
@@ -10,7 +11,7 @@ export type CovidData = {
         on_ventilator?: { currently?: number | null };
       };
     };
-    rolling7DayAvg?: number;
+   
   };
   
   export type ChartType = "bar" | "line";
