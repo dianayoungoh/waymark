@@ -12,8 +12,7 @@ const HoverDetails = ({
   dataSeries,
   displayMode,
 }: HoverDetailsProps) => {
-
-//Get hovered data from hovered date
+  //Get hovered data from hovered date
   const hoveredData = hoveredDate
     ? dataSeries.find((d) => d.date === hoveredDate)
     : null;
@@ -31,7 +30,7 @@ const HoverDetails = ({
       return d.outcomes?.hospitalized?.currently ?? null;
     return null;
   };
-  
+
   // Calculate 7-day rolling average of new values for the selected metric
   const rollingAvg = (() => {
     if (idx < 6) return null;
@@ -71,7 +70,7 @@ const HoverDetails = ({
               <li key={label}>
                 {label}: {value}
               </li>
-            )
+            ),
         )}
       </ul>
     </div>

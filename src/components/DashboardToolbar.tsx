@@ -30,7 +30,7 @@ const DashboardToolbar = ({
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectedOption("");
-  
+
     // Only add a state if the user selected a valid one
     if (value) {
       addState(value);

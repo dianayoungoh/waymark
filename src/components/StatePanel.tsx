@@ -1,5 +1,5 @@
 // StatePanel.tsx
-import  { useState } from "react";
+import { useState } from "react";
 import CovidChart from "./CovidChart";
 import HoverDetails from "./HoverDetails";
 import { CovidData, DisplayMode, ChartType } from "./types";
@@ -30,18 +30,31 @@ const StatePanel = ({
       <div className="panel-header">
         <h2 className="state-name">{name}</h2>
         <div className="panel-actions">
-          <button className="action-btn" onClick={() => moveState(index, -1)}>↑</button>
-          <button className="action-btn" onClick={() => moveState(index, 1)}>↓</button>
-          <button className="action-btn remove" onClick={() => removeState(name)}>✕</button>
+          <button className="action-btn" onClick={() => moveState(index, -1)}>
+            ↑
+          </button>
+          <button className="action-btn" onClick={() => moveState(index, 1)}>
+            ↓
+          </button>
+          <button
+            className="action-btn remove"
+            onClick={() => removeState(name)}
+          >
+            ✕
+          </button>
         </div>
       </div>
       <div className="panel-content">
         {/* Hover details column */}
         <div className="hover-col">
-          <HoverDetails hoveredDate={hover?.date ?? null} dataSeries={data} displayMode={displayMode}/>
+          <HoverDetails
+            hoveredDate={hover?.date ?? null}
+            dataSeries={data}
+            displayMode={displayMode}
+          />
         </div>
-        {/* Covid Chart*/}
 
+        {/* Covid Chart*/}
         <div className="chart-col">
           <CovidChart
             data={data}
