@@ -4,11 +4,12 @@ A React + TypeScript dashboard for visualizing COVID-19 data using bar and line 
 
 ---
 
-# Project Launch and Test:
+## Project Launch and Test
 
-- Install react project using Vite
+- Install the React project using Vite
+
 - Launch the development server:
-- 'npm run dev'
+  - `npm run dev`
 
 - Run all tests:
-- 'npx vitest run'
+  - `npx vitest run`
