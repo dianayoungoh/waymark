@@ -37,7 +37,6 @@ const DashboardToolbar = ({
     { label: "Line", value: "line" },
   ];
 
-
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectedOption("");
@@ -45,7 +44,6 @@ const DashboardToolbar = ({
       addState(value);
     }
   };
-
 
   return (
     <div className="dashboard-controls">
@@ -79,7 +77,6 @@ const DashboardToolbar = ({
               {label}
             </label>
           ))}
-         
         </fieldset>
 
         <fieldset>

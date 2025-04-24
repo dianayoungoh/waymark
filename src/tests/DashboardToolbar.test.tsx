@@ -12,7 +12,7 @@ describe("DashboardToolbar", () => {
         stateControl={{ selectedStates: ["CA", "NY"], addState }}
         displayControl={{ displayMode: "cases", setDisplayMode: vi.fn() }}
         chartControl={{ chartType: "bar", setChartType: vi.fn() }}
-      />
+      />,
     );
     //Ensure none of the options in the select dropdown include the selected states
     const options = screen.getAllByRole("option");
@@ -28,7 +28,7 @@ describe("DashboardToolbar", () => {
         stateControl={{ selectedStates: [], addState }}
         displayControl={{ displayMode: "cases", setDisplayMode: vi.fn() }}
         chartControl={{ chartType: "bar", setChartType: vi.fn() }}
-      />
+      />,
     );
     //"combobox" is how screen readers refer to dropdowns.
     fireEvent.change(screen.getByRole("combobox"), {
@@ -42,12 +42,12 @@ describe("DashboardToolbar", () => {
     render(
       <DashboardToolbar
         stateControl={{
-            selectedStates: STATES.slice(0, MAX_STATES),
-            addState: vi.fn(),
+          selectedStates: STATES.slice(0, MAX_STATES),
+          addState: vi.fn(),
         }}
         displayControl={{ displayMode: "cases", setDisplayMode: vi.fn() }}
         chartControl={{ chartType: "bar", setChartType: vi.fn() }}
-      />
+      />,
     );
 
     expect(screen.getByRole("combobox")).toBeDisabled();
@@ -61,17 +61,14 @@ describe("DashboardToolbar", () => {
         stateControl={{ selectedStates: [], addState: vi.fn() }}
         displayControl={{ displayMode: "cases", setDisplayMode }}
         chartControl={{ chartType: "bar", setChartType: vi.fn() }}
-      />
+      />,
     );
     // Toggle the radio button by selecting hospitalizations
     fireEvent.click(screen.getByLabelText("Hospitalizations"));
     expect(setDisplayMode).toHaveBeenCalledWith("hospitalizations");
-
-    
   });
 
   it("toggles chart type radios", () => {
-
     //Bar chart radio button is checked by default
     const setChartType = vi.fn();
     render(
@@ -79,7 +76,7 @@ describe("DashboardToolbar", () => {
         stateControl={{ selectedStates: [], addState: vi.fn() }}
         displayControl={{ displayMode: "cases", setDisplayMode: vi.fn() }}
         chartControl={{ chartType: "bar", setChartType }}
-      />
+      />,
     );
     //Toggle the chart type by selecting line
     fireEvent.click(screen.getByLabelText("Line"));

@@ -29,7 +29,7 @@ type CovidChartProps = {
 // Extracts the payload from a Recharts mouse event and invokes the onHover callbackwith the corresponding CovidData point
 export const handleHover = (
   e: RechartsMouseEvent,
-  onHover: (data: CovidData) => void
+  onHover: (data: CovidData) => void,
 ) => {
   const payload = e?.activePayload?.[0]?.payload;
   if (payload) onHover(payload);
@@ -39,7 +39,7 @@ const formattedDateTick = (str: string) => {
   const date = new Date(str);
   return date.toLocaleDateString("en-US", {
     month: "short",
-    year: "numeric", 
+    year: "numeric",
   });
 };
 
@@ -50,7 +50,6 @@ const CovidChart = ({
   onHover,
   onLeave,
 }: CovidChartProps) => {
-  
   const chartProps = {
     data,
     onMouseMove: (e: RechartsMouseEvent) => handleHover(e, onHover),
@@ -64,8 +63,7 @@ const CovidChart = ({
       angle={-45}
       textAnchor="end"
       tick={{ fontSize: 10 }}
-    >
-    </XAxis>
+    ></XAxis>
   );
 
   const YAxisElement = (
@@ -89,15 +87,15 @@ const CovidChart = ({
           {...chartProps}
           margin={{ top: 20, right: 30, left: 40, bottom: 100 }}
         >
-        {XAxisElement}
-        {YAxisElement}
+          {XAxisElement}
+          {YAxisElement}
           <Tooltip />
           <Bar dataKey={dataKey} fill="#8884d8" />
         </BarChart>
       ) : (
         <LineChart {...chartProps}>
-        {XAxisElement}
-        {YAxisElement}
+          {XAxisElement}
+          {YAxisElement}
           <Tooltip />
           <Line
             type="monotone"

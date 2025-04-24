@@ -1,4 +1,10 @@
-import { render, screen, waitFor, fireEvent, act } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  act,
+} from "@testing-library/react";
 import CovidDashboard from "../components/CovidDashboard";
 import { vi } from "vitest";
 import { STATES } from "../constants/constants";
@@ -25,7 +31,7 @@ beforeEach(() => {
   global.fetch = vi.fn(() =>
     Promise.resolve({
       json: () => Promise.resolve(mockApiData),
-    })
+    }),
   ) as unknown as typeof fetch;
 });
 
@@ -60,7 +66,6 @@ describe("CovidDashboard", () => {
     });
 
     expect(screen.getByTestId("hover-placeholder")).toBeInTheDocument();
-
   });
 
   it("fetches each state's data from the correct URL", async () => {
@@ -74,7 +79,9 @@ describe("CovidDashboard", () => {
 
     STATES.forEach((state) => {
       expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining(`/states/${state.toLowerCase()}/daily/simple.json`)
+        expect.stringContaining(
+          `/states/${state.toLowerCase()}/daily/simple.json`,
+        ),
       );
     });
   });

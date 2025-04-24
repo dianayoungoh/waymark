@@ -40,10 +40,7 @@ const StatePanel = ({
           <button className="action-btn" onClick={handleMoveDown}>
             ↓
           </button>
-          <button
-            className="action-btn remove"
-            onClick={handleRemove}
-          >
+          <button className="action-btn remove" onClick={handleRemove}>
             ✕
           </button>
         </div>

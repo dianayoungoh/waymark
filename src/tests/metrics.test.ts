@@ -44,9 +44,9 @@ describe("calculateRollingAvg", () => {
         },
       },
     }));
-  
+
     const result = calculateRollingAvg(data, 7, "hospitalizations");
-  
+
     // Differences: 5 * 7 days = 35 → average = 5
     expect(result).toBe(5);
   });
@@ -60,10 +60,9 @@ describe("calculateRollingAvg", () => {
         },
       },
     }));
-  
+
     const result = calculateRollingAvg(data, 7, "hospitalizations");
-  
+
     expect(result).toBeNull();
   });
-
 });

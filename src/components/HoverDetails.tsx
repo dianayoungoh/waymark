@@ -26,7 +26,7 @@ const HoverDetails = ({
 
   const rollingAvg = calculateRollingAvg(dataSeries, idx, displayMode);
 
-  const hosp = hoveredData.outcomes?.hospitalized
+  const hosp = hoveredData.outcomes?.hospitalized;
   const pcr = hoveredData.tests?.pcr;
 
   const hoverEntries: [string, number | null | undefined][] = [
@@ -50,7 +50,7 @@ const HoverDetails = ({
               <li key={label}>
                 {label}: {value}
               </li>
-            )
+            ),
         )}
       </ul>
     </div>
