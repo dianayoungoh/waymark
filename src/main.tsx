@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import CovidDashboard from './components/CovidDashboard'
+import './styles/index.css'
+import CovidDashboard from './components/CovidDashboard.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

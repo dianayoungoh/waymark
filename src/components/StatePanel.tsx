@@ -2,7 +2,7 @@
 import { useState } from "react";
 import CovidChart from "./CovidChart";
 import HoverDetails from "./HoverDetails";
-import { CovidData, DisplayMode, ChartType } from "./types";
+import { CovidData, DisplayMode, ChartType } from "../types/types";
 
 type StatePanelProps = {
   stateInfo: {
@@ -25,20 +25,24 @@ const StatePanel = ({
 }: StatePanelProps) => {
   const [hover, setHover] = useState<CovidData | null>(null);
 
+  const handleMoveUp = () => moveState(index, -1);
+  const handleMoveDown = () => moveState(index, 1);
+  const handleRemove = () => removeState(name);
+
   return (
     <div className="state-panel">
       <div className="panel-header">
         <h2 className="state-name">{name}</h2>
         <div className="panel-actions">
-          <button className="action-btn" onClick={() => moveState(index, -1)}>
+          <button className="action-btn" onClick={handleMoveUp}>
             ↑
           </button>
-          <button className="action-btn" onClick={() => moveState(index, 1)}>
+          <button className="action-btn" onClick={handleMoveDown}>
             ↓
           </button>
           <button
             className="action-btn remove"
-            onClick={() => removeState(name)}
+            onClick={handleRemove}
           >
             ✕
           </button>

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import DashboardToolbar from "./DashboardToolbar";
 import StatePanel from "./StatePanel";
-import { CovidData, DisplayMode, ChartType } from "./types";
+import { CovidData, DisplayMode, ChartType } from "../types/types";
 import "../styles/dashboard.css";
 import { STATES, MAX_STATES } from "../constants/constants";
 

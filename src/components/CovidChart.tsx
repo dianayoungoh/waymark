@@ -10,7 +10,13 @@ import {
   Tooltip,
   Label,
 } from "recharts";
-import { CovidData, ChartType, DisplayMode, RechartsMouseEvent } from "./types";
+
+import {
+  CovidData,
+  ChartType,
+  DisplayMode,
+  RechartsMouseEvent,
+} from "../types/types";
 
 type CovidChartProps = {
   data: CovidData[];
@@ -20,6 +26,23 @@ type CovidChartProps = {
   onLeave: () => void;
 };
 
+// Extracts the payload from a Recharts mouse event and invokes the onHover callbackwith the corresponding CovidData point
+export const handleHover = (
+  e: RechartsMouseEvent,
+  onHover: (data: CovidData) => void
+) => {
+  const payload = e?.activePayload?.[0]?.payload;
+  if (payload) onHover(payload);
+};
+
+const formattedDateTick = (str: string) => {
+  const date = new Date(str);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric", 
+  });
+};
+
 const CovidChart = ({
   data,
   displayMode,
@@ -27,52 +50,54 @@ const CovidChart = ({
   onHover,
   onLeave,
 }: CovidChartProps) => {
-  const dataKey =
-    displayMode === "cases" ? "cases.total" : "outcomes.hospitalized.currently";
-  // Handles mouse hover event from Recharts chart
-  // If a valid payload exists, pass the hovered data point to the onHover callback
-  const handleHover = (e: RechartsMouseEvent) => {
-    const payload = e?.activePayload?.[0]?.payload;
-    if (payload) onHover(payload);
-  };
-
+  
   const chartProps = {
     data,
-    onMouseMove: handleHover,
+    onMouseMove: (e: RechartsMouseEvent) => handleHover(e, onHover),
     onMouseLeave: onLeave,
   };
+
+  const XAxisElement = (
+    <XAxis
+      dataKey="date"
+      tickFormatter={formattedDateTick}
+      angle={-45}
+      textAnchor="end"
+      tick={{ fontSize: 10 }}
+    >
+    </XAxis>
+  );
+
+  const YAxisElement = (
+    <YAxis>
+      <Label
+        angle={-90}
+        position="insideLeft"
+        style={{ textAnchor: "middle" }}
+      />
+    </YAxis>
+  );
+
+  const dataKey =
+    displayMode === "cases" ? "cases.total" : "outcomes.hospitalized.currently";
+
   return (
     <ResponsiveContainer width="100%" height={300}>
+      {/*Show bar chart if chartType is "bar", otherwise show line chart*/}
       {chartType === "bar" ? (
         <BarChart
           {...chartProps}
           margin={{ top: 20, right: 30, left: 40, bottom: 100 }}
         >
-          <XAxis tick={false}>
-            <Label value="Date" offset={-5} position="insideBottom" />
-          </XAxis>
-          <YAxis>
-            <Label
-              angle={-90}
-              position="insideLeft"
-              style={{ textAnchor: "middle" }}
-            />
-          </YAxis>
+        {XAxisElement}
+        {YAxisElement}
           <Tooltip />
           <Bar dataKey={dataKey} fill="#8884d8" />
         </BarChart>
       ) : (
         <LineChart {...chartProps}>
-          <XAxis tick={false}>
-            <Label value="Date" offset={-5} position="insideBottom" />
-          </XAxis>
-          <YAxis>
-            <Label
-              angle={-90}
-              position="insideLeft"
-              style={{ textAnchor: "middle" }}
-            />
-          </YAxis>
+        {XAxisElement}
+        {YAxisElement}
           <Tooltip />
           <Line
             type="monotone"

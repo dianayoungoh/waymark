@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChartType, DisplayMode } from "./types";
+import { ChartType, DisplayMode } from "../types/types";
 import { STATES, MAX_STATES } from "../constants/constants";
 
 type DashboardToolbarProps = {
@@ -27,15 +27,25 @@ const DashboardToolbar = ({
   const { displayMode, setDisplayMode } = displayControl;
   const { chartType, setChartType } = chartControl;
 
+  const displayOptions: { label: string; value: DisplayMode }[] = [
+    { label: "Cases", value: "cases" },
+    { label: "Hospitalizations", value: "hospitalizations" },
+  ];
+
+  const chartOptions: { label: string; value: ChartType }[] = [
+    { label: "Bar", value: "bar" },
+    { label: "Line", value: "line" },
+  ];
+
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectedOption("");
-
-    // Only add a state if the user selected a valid one
     if (value) {
       addState(value);
     }
   };
+
 
   return (
     <div className="dashboard-controls">
@@ -57,62 +67,36 @@ const DashboardToolbar = ({
       <div className="radio-group">
         <fieldset>
           <legend>Data Type</legend>
-
-          {/* Show graph for cases */}
-
-          <label>
-            <input
-              type="radio"
-              name="metric"
-              value="cases"
-              checked={displayMode === "cases"}
-              onChange={() => setDisplayMode("cases")}
-            />
-            Cases
-          </label>
-
-          {/* Show graph for hospitalizations */}
-
-          <label>
-            <input
-              type="radio"
-              name="metric"
-              value="hospitalizations"
-              checked={displayMode === "hospitalizations"}
-              onChange={() => setDisplayMode("hospitalizations")}
-            />
-            Hospitalizations
-          </label>
+          {displayOptions.map(({ label, value }) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="metric"
+                value={value}
+                checked={displayMode === value}
+                onChange={() => setDisplayMode(value)}
+              />
+              {label}
+            </label>
+          ))}
+         
         </fieldset>
 
         <fieldset>
           <legend>Chart Type</legend>
 
-          {/* Bar Chart Type */}
-
-          <label>
-            <input
-              type="radio"
-              name="chartType"
-              value="bar"
-              checked={chartType === "bar"}
-              onChange={() => setChartType("bar")}
-            />
-            Bar
-          </label>
-
-          {/* Line Chart Type */}
-
-          <label>
-            <input
-              type="radio"
-              name="chartType"
-              value="line"
-              checked={chartType === "line"}
-              onChange={() => setChartType("line")}
-            />
-            Line
-          </label>
+          {chartOptions.map(({ label, value }) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="chartType"
+                value={value}
+                checked={chartType === value}
+                onChange={() => setChartType(value)}
+              />
+              {label}
+            </label>
+          ))}
         </fieldset>
       </div>
     </div>
