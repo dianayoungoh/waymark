@@ -15,8 +15,9 @@ import {
   CovidData,
   ChartType,
   DisplayMode,
-  RechartsMouseEvent,
+
 } from "../types/types";
+
 
 type CovidChartProps = {
   data: CovidData[];
@@ -24,6 +25,10 @@ type CovidChartProps = {
   chartType: ChartType;
   onHover: (data: CovidData) => void;
   onLeave: () => void;
+};
+
+type RechartsMouseEvent = {
+  activePayload?: { payload?: CovidData }[];
 };
 
 // Extracts the payload from a Recharts mouse event and invokes the onHover callbackwith the corresponding CovidData point
@@ -35,6 +40,7 @@ export const handleHover = (
   if (payload) onHover(payload);
 };
 
+// Formats the date string from raw data for better axis readability
 const formattedDateTick = (str: string) => {
   const date = new Date(str);
   return date.toLocaleDateString("en-US", {
@@ -56,16 +62,18 @@ const CovidChart = ({
     onMouseLeave: onLeave,
   };
 
+  // X-axis configuration shared by both chart types
   const XAxisElement = (
     <XAxis
       dataKey="date"
       tickFormatter={formattedDateTick}
       angle={-45}
       textAnchor="end"
-      tick={{ fontSize: 10 }}
+      tick={{ fontSize: 8 }}
     ></XAxis>
   );
-
+  
+  // Y-axis configuration with vertical label
   const YAxisElement = (
     <YAxis>
       <Label
@@ -76,6 +84,7 @@ const CovidChart = ({
     </YAxis>
   );
 
+  // Determine which nested data field to visualize based on displayMode
   const dataKey =
     displayMode === "cases" ? "cases.total" : "outcomes.hospitalized.currently";
 

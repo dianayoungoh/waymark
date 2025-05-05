@@ -37,14 +37,22 @@ function CovidDashboard() {
   }, []);
 
   const addState = (state: string) => {
-    if (!selectedStates.includes(state) && selectedStates.length < MAX_STATES) {
-      setSelectedStates([...selectedStates, state]);
-    }
+    setSelectedStates((prev) => {
+      if (!prev.includes(state) && prev.length < MAX_STATES) {
+        return [...prev, state];
+      }
+      return prev;
+    });
   };
-
+  
   const removeState = (state: string) => {
-    setSelectedStates(selectedStates.filter((st) => st !== state));
+    setSelectedStates((prev) => prev.filter((st) => st !== state));
   };
+  /**
+   * Reorders the selectedStates array by swapping the state at the given index
+   * with its neighbor in the specified direction (e.g., up = -1, down = +1).
+   * Prevents out-of-bounds moves.
+   */
 
   const moveState = (index: number, direction: number) => {
     const newIndex = index + direction;

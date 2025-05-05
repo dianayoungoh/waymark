@@ -23,7 +23,7 @@ const StatePanel = ({
   moveState,
   removeState,
 }: StatePanelProps) => {
-  const [hover, setHover] = useState<CovidData | null>(null);
+  const [hover, setHover] = useState<CovidData | null>(null); // Track hovered data point for this panel
 
   const handleMoveUp = () => moveState(index, -1);
   const handleMoveDown = () => moveState(index, 1);
@@ -31,6 +31,7 @@ const StatePanel = ({
 
   return (
     <div className="state-panel">
+      {/* Panel Header: State name and action buttons */}
       <div className="panel-header">
         <h2 className="state-name">{name}</h2>
         <div className="panel-actions">
@@ -45,8 +46,10 @@ const StatePanel = ({
           </button>
         </div>
       </div>
+      {/* Panel Content: Hover details and chart */}
       <div className="panel-content">
         {/* Hover details column */}
+        {/* Left column: Shows metrics for hovered date */}
         <div className="hover-col">
           <HoverDetails
             hoveredDate={hover?.date ?? null}
@@ -61,8 +64,8 @@ const StatePanel = ({
             data={data}
             displayMode={displayMode}
             chartType={chartType}
-            onHover={setHover}
-            onLeave={() => setHover(null)}
+            onHover={setHover} // Update hover state on mouse move
+            onLeave={() => setHover(null)} // Clear hover state on mouse leave
           />
         </div>
       </div>

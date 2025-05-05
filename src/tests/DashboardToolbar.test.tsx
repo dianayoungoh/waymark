@@ -30,7 +30,6 @@ describe("DashboardToolbar", () => {
         chartControl={{ chartType: "bar", setChartType: vi.fn() }}
       />,
     );
-    //"combobox" is how screen readers refer to dropdowns.
     fireEvent.change(screen.getByRole("combobox"), {
       target: { value: STATES[0] },
     });

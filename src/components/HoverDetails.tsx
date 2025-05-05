@@ -13,7 +13,8 @@ const HoverDetails = ({
   dataSeries,
   displayMode,
 }: HoverDetailsProps) => {
-  //Get hovered data from hovered date
+
+  // Try to find the full data object for the hovered date
   const hoveredData = hoveredDate
     ? dataSeries.find((d) => d.date === hoveredDate)
     : null;
@@ -24,11 +25,14 @@ const HoverDetails = ({
   // Get index of hovered data to calculate rolling average
   const idx = dataSeries.findIndex((d) => d.date === hoveredDate);
 
+  // Compute 7-day rolling average for new cases or hospitalizations
   const rollingAvg = calculateRollingAvg(dataSeries, idx, displayMode);
 
+  // Extract optional hospitalization and PCR test details from nested data
   const hosp = hoveredData.outcomes?.hospitalized;
   const pcr = hoveredData.tests?.pcr;
 
+  // Define the list of data points to show on hover, including optional fields and computed 7-day avg
   const hoverEntries: [string, number | null | undefined][] = [
     ["Total Recovered", hoveredData.outcomes?.recovered],
     ["Total PCR Tests", pcr?.total],

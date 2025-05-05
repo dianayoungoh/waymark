@@ -58,12 +58,16 @@ describe("CovidDashboard", () => {
       expect(global.fetch).toHaveBeenCalledTimes(STATES.length);
     });
 
+    // Simulate selecting the first state from the dropdown
     const select = screen.getByRole("combobox");
     fireEvent.change(select, { target: { value: STATES[0] } });
 
+    // Wait for UI to update and show selected state
     await waitFor(() => {
       expect(screen.getByText(STATES[0])).toBeInTheDocument();
     });
+
+    // Assert the placeholder for graph hover details is present
 
     expect(screen.getByTestId("hover-placeholder")).toBeInTheDocument();
   });

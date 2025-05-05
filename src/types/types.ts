@@ -16,6 +16,4 @@ export type CovidData = {
 export type ChartType = "bar" | "line";
 export type DisplayMode = "cases" | "hospitalizations";
 
-export type RechartsMouseEvent = {
-  activePayload?: { payload?: CovidData }[];
-};
+

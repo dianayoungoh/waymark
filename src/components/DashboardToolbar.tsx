@@ -4,16 +4,16 @@ import { STATES, MAX_STATES } from "../constants/constants";
 
 type DashboardToolbarProps = {
   stateControl: {
-    selectedStates: string[];
-    addState: (state: string) => void;
+    selectedStates: string[]; // Currently selected states
+    addState: (state: string) => void; // Function to add a new state
   };
   displayControl: {
-    displayMode: DisplayMode;
-    setDisplayMode: (mode: DisplayMode) => void;
+    displayMode: DisplayMode; // Current metric (e.g., cases or hospitalizations)
+    setDisplayMode: (mode: DisplayMode) => void; // Function to change the metric
   };
   chartControl: {
-    chartType: ChartType;
-    setChartType: (type: ChartType) => void;
+    chartType: ChartType; // Current chart type (bar or line)
+    setChartType: (type: ChartType) => void; // Function to change the chart type
   };
 };
 
@@ -22,11 +22,15 @@ const DashboardToolbar = ({
   displayControl,
   chartControl,
 }: DashboardToolbarProps) => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(""); // Tracks currently selected dropdown value
+
+  // Destructure nested props for local use
   const { selectedStates, addState } = stateControl;
   const { displayMode, setDisplayMode } = displayControl;
   const { chartType, setChartType } = chartControl;
 
+  
+  // Options for the display mode and chart type radio buttons
   const displayOptions: { label: string; value: DisplayMode }[] = [
     { label: "Cases", value: "cases" },
     { label: "Hospitalizations", value: "hospitalizations" },
@@ -37,11 +41,12 @@ const DashboardToolbar = ({
     { label: "Line", value: "line" },
   ];
 
+  // When user selects a state, reset dropdown and call addState
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
-    setSelectedOption("");
+    setSelectedOption(""); // reset to default after selection
     if (value) {
-      addState(value);
+      addState(value); // pass selected state back up to parent
     }
   };
 
