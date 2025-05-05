@@ -16,7 +16,7 @@ export const getMetricValue = (
   return null;
 };
 
-// Calculates a 7-day rolling average of the *daily difference* in metric values.
+// Calculates a 7-day rolling average of the daily difference in metric values.
 
 export const calculateRollingAvg = (
   dataSeries: CovidData[],
@@ -33,7 +33,6 @@ export const calculateRollingAvg = (
   });
 
   // Return average if all differences are non-null, otherwise null
-
   return diffs.every((n) => n !== null)
     ? diffs.reduce((sum, n) => sum + (n as number), 0) / 7
     : null;

@@ -31,7 +31,7 @@ type RechartsMouseEvent = {
   activePayload?: { payload?: CovidData }[];
 };
 
-// Extracts the payload from a Recharts mouse event and invokes the onHover callbackwith the corresponding CovidData point
+// Handles mouse hover events on the chart
 export const handleHover = (
   e: RechartsMouseEvent,
   onHover: (data: CovidData) => void,
@@ -72,7 +72,7 @@ const CovidChart = ({
       tick={{ fontSize: 8 }}
     ></XAxis>
   );
-  
+
   // Y-axis configuration with vertical label
   const YAxisElement = (
     <YAxis>
@@ -84,7 +84,7 @@ const CovidChart = ({
     </YAxis>
   );
 
-  // Determine which nested data field to visualize based on displayMode
+  // Determine which data field to visualize based on displayMode
   const dataKey =
     displayMode === "cases" ? "cases.total" : "outcomes.hospitalized.currently";
 

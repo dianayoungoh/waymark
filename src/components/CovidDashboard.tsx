@@ -14,7 +14,7 @@ function CovidDashboard() {
   const [displayMode, setDisplayMode] = useState<DisplayMode>("cases");
   const [chartType, setChartType] = useState<ChartType>("bar");
 
-  // Fetch all states data at once and store them in the state since API is static
+  // Fetch all states data at once and store them in the component state since API is static
   useEffect(() => {
     const fetchAllStates = async () => {
       const stateDataPairs = await Promise.all(
@@ -37,16 +37,16 @@ function CovidDashboard() {
   }, []);
 
   const addState = (state: string) => {
-    setSelectedStates((prev) => {
-      if (!prev.includes(state) && prev.length < MAX_STATES) {
-        return [...prev, state];
+    setSelectedStates((prevStates) => {
+      if (!prevStates.includes(state) && prevStates.length < MAX_STATES) {
+        return [...prevStates, state];
       }
-      return prev;
+      return prevStates;
     });
   };
   
   const removeState = (state: string) => {
-    setSelectedStates((prev) => prev.filter((st) => st !== state));
+    setSelectedStates((prevStates) => prevStates.filter((st) => st !== state));
   };
   /**
    * Reorders the selectedStates array by swapping the state at the given index
@@ -58,8 +58,8 @@ function CovidDashboard() {
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= selectedStates.length) return;
 
-    setSelectedStates((prev) => {
-      const updatedStates = [...prev];
+    setSelectedStates((prevStates) => {
+      const updatedStates = [...prevStates];
       [updatedStates[index], updatedStates[newIndex]] = [
         updatedStates[newIndex],
         updatedStates[index],

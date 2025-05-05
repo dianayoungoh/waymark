@@ -48,8 +48,7 @@ const StatePanel = ({
       </div>
       {/* Panel Content: Hover details and chart */}
       <div className="panel-content">
-        {/* Hover details column */}
-        {/* Left column: Shows metrics for hovered date */}
+        {/* Shows metrics for hovered date */}
         <div className="hover-col">
           <HoverDetails
             hoveredDate={hover?.date ?? null}
