@@ -3,7 +3,6 @@ import { fetchCovidData } from "../services/covidService";
 
 export const getCovidData = async (req: Request, res: Response) => {
   const { state } = req.params;
-
   try {
     const sortedData = await fetchCovidData(state);
     res.json({ data: sortedData });

@@ -1,4 +1,3 @@
-// CovidChart.tsx
 import {
   ResponsiveContainer,
   BarChart,
@@ -10,13 +9,11 @@ import {
   Tooltip,
   Label,
 } from "recharts";
-
-import { CovidData, ChartType, DisplayMode } from "../types/types";
+import { CovidData } from "../types/types";
+import { useCovid } from "../context/CovidContext";
 
 type CovidChartProps = {
   data: CovidData[];
-  displayMode: DisplayMode;
-  chartType: ChartType;
   onHover: (data: CovidData) => void;
   onLeave: () => void;
 };
@@ -25,49 +22,47 @@ type RechartsMouseEvent = {
   activePayload?: { payload?: CovidData }[];
 };
 
-// Extracts the payload from a Recharts mouse event and invokes the onHover callbackwith the corresponding CovidData point
-export const handleHover = (
+// Handle hover event
+const handleHover = (
   e: RechartsMouseEvent,
-  onHover: (data: CovidData) => void,
+  onHover: (data: CovidData) => void
 ) => {
   const payload = e?.activePayload?.[0]?.payload;
   if (payload) onHover(payload);
 };
 
-// Formats the date string from raw data for better axis readability
-const formattedDateTick = (str: string) => {
-  const date = new Date(str);
-  return date.toLocaleDateString("en-US", {
+// Format date ticks for X-axis
+const formatDate = (str: string) =>
+  new Date(str).toLocaleDateString("en-US", {
     month: "short",
     year: "numeric",
   });
-};
 
-const CovidChart = ({
-  data,
-  displayMode,
-  chartType,
-  onHover,
-  onLeave,
-}: CovidChartProps) => {
+const CovidChart = ({ data, onHover, onLeave }: CovidChartProps) => {
+  const { displayMode, chartType } = useCovid();
+
   const chartProps = {
     data,
     onMouseMove: (e: RechartsMouseEvent) => handleHover(e, onHover),
     onMouseLeave: onLeave,
+    margin: { top: 20, right: 30, left: 40, bottom: 100 },
   };
 
-  // X-axis configuration shared by both chart types
+  const dataKey =
+    displayMode === "cases"
+      ? "cases.total"
+      : "outcomes.hospitalized.currently";
+
   const XAxisElement = (
     <XAxis
       dataKey="date"
-      tickFormatter={formattedDateTick}
+      tickFormatter={formatDate}
       angle={-45}
       textAnchor="end"
       tick={{ fontSize: 8 }}
-    ></XAxis>
+    />
   );
 
-  // Y-axis configuration with vertical label
   const YAxisElement = (
     <YAxis>
       <Label
@@ -78,18 +73,10 @@ const CovidChart = ({
     </YAxis>
   );
 
-  // Determine which nested data field to visualize based on displayMode
-  const dataKey =
-    displayMode === "cases" ? "cases.total" : "outcomes.hospitalized.currently";
-
   return (
     <ResponsiveContainer width="100%" height={300}>
-      {/*Show bar chart if chartType is "bar", otherwise show line chart*/}
       {chartType === "bar" ? (
-        <BarChart
-          {...chartProps}
-          margin={{ top: 20, right: 30, left: 40, bottom: 100 }}
-        >
+        <BarChart {...chartProps}>
           {XAxisElement}
           {YAxisElement}
           <Tooltip />

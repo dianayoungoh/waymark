@@ -1,19 +1,15 @@
-// HoverDetails.tsx
 import { CovidData } from "../types/types";
 import { calculateRollingAvg } from "../utils/metrics";
+import { useCovid } from "../context/CovidContext";
 
 type HoverDetailsProps = {
   hoveredDate: string | null;
   dataSeries: CovidData[];
-  displayMode: "cases" | "hospitalizations";
 };
 
-const HoverDetails = ({
-  hoveredDate,
-  dataSeries,
-  displayMode,
-}: HoverDetailsProps) => {
-  // Try to find the full data object for the hovered date
+const HoverDetails = ({ hoveredDate, dataSeries }: HoverDetailsProps) => {
+  const { displayMode } = useCovid();
+
   const hoveredData = hoveredDate
     ? dataSeries.find((d) => d.date === hoveredDate)
     : null;
@@ -43,6 +39,7 @@ const HoverDetails = ({
       rollingAvg != null ? Math.round(rollingAvg) : null,
     ],
   ];
+
   return (
     <div className="hover-details">
       <h3 className="hover-title">{hoveredData.date}</h3>
@@ -53,7 +50,7 @@ const HoverDetails = ({
               <li key={label}>
                 {label}: {value}
               </li>
-            ),
+            )
         )}
       </ul>
     </div>
