@@ -12,7 +12,7 @@ import "../styles/dashboard.css";
 import { useCovid } from "../context/CovidContext";
 
 const CovidDashboard = () => {
-  const { covidByState, selectedStates} = useCovid();
+  const { covidByState, selectedStates } = useCovid();
 
   return (
     <div className="dashboard-wrapper">
@@ -26,11 +26,11 @@ const CovidDashboard = () => {
               key={state}
               stateInfo={{ name: state, index, data: covidByState[state] }}
             />
-          ) : null
+          ) : null,
         )}
       </div>
     </div>
   );
-}
+};
 
 export default CovidDashboard;

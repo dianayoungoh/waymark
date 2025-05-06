@@ -57,7 +57,7 @@ const HoverDetails = ({ hoveredDate, dataSeries }: HoverDetailsProps) => {
               <li key={label}>
                 {label}: {value}
               </li>
-            )
+            ),
         )}
       </ul>
     </div>

@@ -23,10 +23,7 @@ type StatePanelProps = {
 };
 
 const StatePanel = ({ stateInfo: { name, index, data } }: StatePanelProps) => {
-  const {
-    moveState,
-    removeState,
-  } = useCovid();
+  const { moveState, removeState } = useCovid();
 
   const [hover, setHover] = useState<CovidData | null>(null);
 
@@ -40,19 +37,22 @@ const StatePanel = ({ stateInfo: { name, index, data } }: StatePanelProps) => {
       <div className="panel-header">
         <h2 className="state-name">{name}</h2>
         <div className="panel-actions">
-          <button className="action-btn" onClick={handleMoveUp}>↑</button>
-          <button className="action-btn" onClick={handleMoveDown}>↓</button>
-          <button className="action-btn remove" onClick={handleRemove}>✕</button>
+          <button className="action-btn" onClick={handleMoveUp}>
+            ↑
+          </button>
+          <button className="action-btn" onClick={handleMoveDown}>
+            ↓
+          </button>
+          <button className="action-btn remove" onClick={handleRemove}>
+            ✕
+          </button>
         </div>
       </div>
       {/* Panel Content: Hover details and chart */}
       <div className="panel-content">
         {/* Hover details column */}
         <div className="hover-col">
-          <HoverDetails
-            hoveredDate={hover?.date ?? null}
-            dataSeries={data}
-          />
+          <HoverDetails hoveredDate={hover?.date ?? null} dataSeries={data} />
         </div>
 
         {/* Covid Chart*/}

@@ -6,7 +6,7 @@ import { CovidProvider } from "./context/CovidContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-     <CovidProvider>
+    <CovidProvider>
       <CovidDashboard />
     </CovidProvider>
   </StrictMode>,

@@ -37,7 +37,7 @@ const DashboardToolbar = () => {
   // When user selects a state, reset dropdown and call addState
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
-    setSelectedOption(""); 
+    setSelectedOption("");
     if (value) addState(value);
   };
 
@@ -57,7 +57,7 @@ const DashboardToolbar = () => {
           </option>
         ))}
       </select>
-        {/*Radio toggle to view graph according to cases or hospitalizations */}
+      {/*Radio toggle to view graph according to cases or hospitalizations */}
       <div className="radio-group">
         <fieldset>
           <legend>Data Type</legend>

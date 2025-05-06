@@ -19,16 +19,14 @@ import { CovidContextType, CovidProviderProps } from "./CovidContext.types";
 const CovidContext = createContext<CovidContextType | null>(null);
 export const useCovid = () => useContext(CovidContext)!;
 
-export const CovidProvider = ({
-  children,
-}: CovidProviderProps) => {
+export const CovidProvider = ({ children }: CovidProviderProps) => {
   const [selectedStates, setSelectedStates] = useState<string[]>([]);
   const [covidByState, setCovidByState] = useState<Record<string, CovidData[]>>(
     {},
   );
   const [displayMode, setDisplayMode] = useState<DisplayMode>("cases");
   const [chartType, setChartType] = useState<ChartType>("bar");
-//Adds a state to the selected list and fetches its data if not cached.
+  //Adds a state to the selected list and fetches its data if not cached.
 
   const addState = async (state: string) => {
     setSelectedStates((prevStates) => {
@@ -48,13 +46,12 @@ export const CovidProvider = ({
     }
   };
 
+  //Removes a state from the selected list. Does not delete its cached data in case it's re-selected later.
 
-   //Removes a state from the selected list. Does not delete its cached data in case it's re-selected later.
-  
   const removeState = (state: string) => {
     setSelectedStates((prevStates) => prevStates.filter((st) => st !== state));
   };
-  
+
   // Move state up or down in the selected states list
   // direction: -1 for up, 1 for down
   const moveState = (index: number, direction: number) => {

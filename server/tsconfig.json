@@ -1,12 +1,11 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "module": "CommonJS",
-      "strict": true,
-      "esModuleInterop": true,
-      "outDir": "dist",
-      "lib": ["ES2022", "DOM"]
-
-    },
-    "include": ["index/**/*.ts", "index.ts"]
-  }
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "lib": ["ES2022", "DOM"]
+  },
+  "include": ["index/**/*.ts", "index.ts"]
+}

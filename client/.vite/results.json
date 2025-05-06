@@ -1,1 +1,23 @@
-{"version":"3.1.2","results":[[":my-app/src/tests/DashboardToolbar.test.tsx",{"duration":0,"failed":true}],[":my-app/src/tests/CovidDashboard.test.tsx",{"duration":0,"failed":true}],[":my-app/src/tests/metrics.test.ts",{"duration":0,"failed":true}],[":my-app/src/tests/StatePanel.test.tsx",{"duration":0,"failed":true}],[":my-app/src/tests/HoverDetails.test.tsx",{"duration":0,"failed":true}],[":my-app/src/tests/CovidChart.test.tsx",{"duration":0,"failed":true}]]}
+{
+  "version": "3.1.2",
+  "results": [
+    [
+      ":my-app/src/tests/DashboardToolbar.test.tsx",
+      { "duration": 0, "failed": true }
+    ],
+    [
+      ":my-app/src/tests/CovidDashboard.test.tsx",
+      { "duration": 0, "failed": true }
+    ],
+    [":my-app/src/tests/metrics.test.ts", { "duration": 0, "failed": true }],
+    [
+      ":my-app/src/tests/StatePanel.test.tsx",
+      { "duration": 0, "failed": true }
+    ],
+    [
+      ":my-app/src/tests/HoverDetails.test.tsx",
+      { "duration": 0, "failed": true }
+    ],
+    [":my-app/src/tests/CovidChart.test.tsx", { "duration": 0, "failed": true }]
+  ]
+}

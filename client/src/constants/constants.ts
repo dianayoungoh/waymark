@@ -1,6 +1,6 @@
-/** 
+/**
  * constants.ts
- * 
+ *
  * This file contains constants used throughout the application.
  * It includes a list of states and the maximum number of states allowed.
  **/

@@ -33,7 +33,7 @@ type RechartsMouseEvent = {
 // Extract and forward the hovered data point to the parent (StatePanel)
 const handleHover = (
   e: RechartsMouseEvent,
-  onHover: (data: CovidData) => void
+  onHover: (data: CovidData) => void,
 ) => {
   const payload = e?.activePayload?.[0]?.payload;
   if (payload) onHover(payload);
@@ -58,9 +58,7 @@ const CovidChart = ({ data, onHover, onLeave }: CovidChartProps) => {
   };
 
   const dataKey =
-    displayMode === "cases"
-      ? "cases.total"
-      : "outcomes.hospitalized.currently";
+    displayMode === "cases" ? "cases.total" : "outcomes.hospitalized.currently";
 
   const XAxisElement = (
     <XAxis
