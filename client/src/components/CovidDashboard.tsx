@@ -1,9 +1,17 @@
+/**
+ * CovidDashboard.tsx
+ *
+ * Top-level container for the COVID-19 dashboard UI.
+ * Renders the state selection toolbar and a list of StatePanels
+ * for each selected state. Data is consumed from CovidContext.
+ */
+
 import DashboardToolbar from "./DashboardToolbar";
 import StatePanel from "./StatePanel";
 import "../styles/dashboard.css";
 import { useCovid } from "../context/CovidContext";
 
-function CovidDashboard() {
+const CovidDashboard = () => {
   const { covidByState, selectedStates} = useCovid();
 
   return (

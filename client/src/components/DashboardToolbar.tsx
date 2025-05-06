@@ -1,3 +1,12 @@
+/**
+ * DashboardToolbar.tsx
+ *
+ * Renders UI controls for the COVID-19 dashboard.
+ * Includes a dropdown to select states and radio inputs to toggle
+ * between chart types (bar/line) and data metrics (cases/hospitalizations).
+ * State is synced via CovidContext.
+ */
+
 import { useState } from "react";
 import { STATES, MAX_STATES } from "../constants/constants";
 import { ChartType, DisplayMode } from "../types/types";
@@ -15,7 +24,7 @@ const DashboardToolbar = () => {
 
   const [selectedOption, setSelectedOption] = useState("");
 
-  const displayOptions: { label: string; value: DisplayMode }[] = [
+  const metricOptions: { label: string; value: DisplayMode }[] = [
     { label: "Cases", value: "cases" },
     { label: "Hospitalizations", value: "hospitalizations" },
   ];
@@ -28,7 +37,7 @@ const DashboardToolbar = () => {
   // When user selects a state, reset dropdown and call addState
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
-    setSelectedOption(""); // Reset dropdown
+    setSelectedOption(""); 
     if (value) addState(value);
   };
 
@@ -48,11 +57,11 @@ const DashboardToolbar = () => {
           </option>
         ))}
       </select>
-
+        {/*Radio toggle to view graph according to cases or hospitalizations */}
       <div className="radio-group">
         <fieldset>
           <legend>Data Type</legend>
-          {displayOptions.map(({ label, value }) => (
+          {metricOptions.map(({ label, value }) => (
             <label key={value}>
               <input
                 type="radio"
@@ -65,7 +74,7 @@ const DashboardToolbar = () => {
             </label>
           ))}
         </fieldset>
-
+        {/*Radio toggle to view graph according to bar or line */}
         <fieldset>
           <legend>Chart Type</legend>
           {chartOptions.map(({ label, value }) => (

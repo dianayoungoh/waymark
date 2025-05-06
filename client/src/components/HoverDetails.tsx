@@ -1,3 +1,14 @@
+/**
+ * HoverDetails.tsx
+ *
+ * Displays contextual information when hovering over a chart data point.
+ * Includes values like total PCR tests, hospitalization details, and
+ * a computed 7-day rolling average for the selected display mode.
+ *
+ * Props:
+ * - hoveredDate: the date currently being hovered over in the chart
+ * - dataSeries: full time series for the selected state
+ */
 import { CovidData } from "../types/types";
 import { calculateRollingAvg } from "../utils/metrics";
 import { useCovid } from "../context/CovidContext";
@@ -23,7 +34,6 @@ const HoverDetails = ({ hoveredDate, dataSeries }: HoverDetailsProps) => {
   // Compute 7-day rolling average for new cases or hospitalizations
   const rollingAvg = calculateRollingAvg(dataSeries, idx, displayMode);
 
-  // Extract optional hospitalization and PCR test details from nested data
   const hosp = hoveredData.outcomes?.hospitalized;
   const pcr = hoveredData.tests?.pcr;
 

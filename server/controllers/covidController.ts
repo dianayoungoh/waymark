@@ -1,3 +1,12 @@
+/**
+ * getCovidData.ts
+ *
+ * Express route handler for fetching COVID-19 data for a given U.S. state.
+ * Delegates the actual data retrieval to the covidService layer.
+ *
+ * Route: GET /api/state/:state
+ */
+
 import { Request, Response } from "express";
 import { fetchCovidData } from "../services/covidService";
 
