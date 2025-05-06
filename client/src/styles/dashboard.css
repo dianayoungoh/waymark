@@ -1,0 +1,45 @@
+.panel-content {
+  display: flex;
+}
+
+.radio-group {
+  display: flex;
+}
+.hover-col {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.chart-col {
+  flex: 1;
+  min-width: 0;
+}
+h1.dashboard-title {
+  justify-content: center;
+  display: flex;
+}
+select.state-select {
+  height: 9vh;
+  margin-top: 2vh;
+}
+.dashboard-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-wrapper {
+  width: 80%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+div#root {
+  justify-content: center;
+  display: flex;
+}
+
+.panel-actions {
+  float: right;
+  margin-top: -8vh;
+}
