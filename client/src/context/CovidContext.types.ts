@@ -1,8 +1,6 @@
 /**
  * CovidContext.types.ts
- *
  * Type definitions for the CovidContext and its provider.
- * Defines the shape of context state and actions used across the dashboard.
  */
 
 import { CovidData, DisplayMode, ChartType } from "../types/types";

@@ -46,7 +46,7 @@ const DashboardToolbar = () => {
       <select
         value={selectedOption}
         onChange={handleSelectChange}
-        disabled={selectedStates.length >= MAX_STATES}
+        disabled={selectedStates.length >= MAX_STATES} // Disable if max states reached
         className="state-select"
       >
         {/* Dropdown to select a state; only show states that have not already been selected */}

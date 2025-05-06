@@ -2,17 +2,10 @@
  * CovidChart.tsx
  *
  * Reusable chart component for visualizing COVID-19 case or hospitalization data
- * using Recharts. Renders either a bar chart or line chart based on context state.
+ * using Recharts. Renders either a bar chart or line chart based on user selection.
  *
- * Props:
- * - data: COVID data array for a single state
- * - onHover: callback triggered when hovering a data point
- * - onLeave: callback triggered when mouse leaves the chart area
- *
- * Context:
- * - displayMode: determines whether to show "cases" or "hospitalizations"
- * - chartType: determines whether to render a bar or line chart
  */
+
 import {
   ResponsiveContainer,
   BarChart,
@@ -55,7 +48,7 @@ const formatDate = (str: string) =>
 
 const CovidChart = ({ data, onHover, onLeave }: CovidChartProps) => {
   const { displayMode, chartType } = useCovid();
-  
+
   // Shared props between BarChart and LineChart
   const chartProps = {
     data,

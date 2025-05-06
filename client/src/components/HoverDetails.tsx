@@ -5,9 +5,6 @@
  * Includes values like total PCR tests, hospitalization details, and
  * a computed 7-day rolling average for the selected display mode.
  *
- * Props:
- * - hoveredDate: the date currently being hovered over in the chart
- * - dataSeries: full time series for the selected state
  */
 import { CovidData } from "../types/types";
 import { calculateRollingAvg } from "../utils/metrics";
@@ -37,7 +34,7 @@ const HoverDetails = ({ hoveredDate, dataSeries }: HoverDetailsProps) => {
   const hosp = hoveredData.outcomes?.hospitalized;
   const pcr = hoveredData.tests?.pcr;
 
-  // Define the list of data points to show on hover, including optional fields and computed 7-day avg
+  // Define the list of data points to show on hover, including optional fields and computed 7-day rolling avg
   const hoverEntries: [string, number | null | undefined][] = [
     ["Total Recovered", hoveredData.outcomes?.recovered],
     ["Total PCR Tests", pcr?.total],

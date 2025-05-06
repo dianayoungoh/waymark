@@ -6,12 +6,6 @@
  * - A column of hover details for the currently hovered date
  * - A COVID-19 chart for the state's case/hospitalization data
  *
- * Props:
- * - stateInfo: includes name, position in the list, and COVID data array
- *
- * Context:
- * - moveState: reorders the state in the selected list
- * - removeState: removes the state from the dashboard
  */
 
 import { useState } from "react";

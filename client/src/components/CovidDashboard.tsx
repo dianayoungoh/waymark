@@ -19,6 +19,7 @@ const CovidDashboard = () => {
       <h1 className="dashboard-title">COVID-19 Dashboard</h1>
       <DashboardToolbar />
       <div className="state-list">
+        {/* Render a panel for each selected state */}
         {selectedStates.map((state, index) =>
           covidByState[state] ? (
             <StatePanel

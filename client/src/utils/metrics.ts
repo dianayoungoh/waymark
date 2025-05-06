@@ -1,8 +1,14 @@
 import { CovidData } from "../types/types";
+/**
+ * metrics.ts
+ *
+ * Utility functions for computing display values and rolling averages
+ * for COVID-19 chart metrics.
+ *
+ */
 
 //Extracts the appropriate metric value from a CovidData object
 //based on the selected display mode (cases or hospitalizations).
-
 export const getMetricValue = (
   d: CovidData,
   displayMode: "cases" | "hospitalizations",
