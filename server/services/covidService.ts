@@ -7,7 +7,7 @@ export const fetchCovidData = async (state: string) => {
     const sorted = [...data].sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
-  //test
+  // test
     return sorted;
   };
   
