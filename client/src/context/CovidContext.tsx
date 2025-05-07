@@ -26,8 +26,8 @@ export const CovidProvider = ({ children }: CovidProviderProps) => {
   );
   const [displayMode, setDisplayMode] = useState<DisplayMode>("cases");
   const [chartType, setChartType] = useState<ChartType>("bar");
-  //Adds a state to the selected list and fetches its data if not cached.
 
+  //Adds a state to the selected list and fetches its data if not cached.
   const addState = async (state: string) => {
     setSelectedStates((prevStates) => {
       if (!prevStates.includes(state) && prevStates.length < MAX_STATES) {
@@ -47,7 +47,6 @@ export const CovidProvider = ({ children }: CovidProviderProps) => {
   };
 
   //Removes a state from the selected list. Does not delete its cached data in case it's re-selected later.
-
   const removeState = (state: string) => {
     setSelectedStates((prevStates) => prevStates.filter((st) => st !== state));
   };
