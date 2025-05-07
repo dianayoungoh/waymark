@@ -7,6 +7,7 @@
  * Route:
  *   GET /api/state/:state → getCovidData
  */
+
 import { Router } from "express";
 import { getCovidData } from "../controllers/covidController";
 
