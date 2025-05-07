@@ -3,6 +3,7 @@
 A React + TypeScript dashboard for visualizing COVID-19 data using bar and line charts. Built with Recharts for interactive data visualization and tested using Vitest and Testing Library.
 
 Backed by a lightweight Express server serving mock COVID-19 data, the dashboard supports dynamic filtering, hover interactions, and responsive data views.
+
 ---
 
 ## Project Launch and Test
