@@ -8,9 +8,13 @@ Backed by a lightweight Express server serving mock COVID-19 data, the dashboard
 
 ## Project Launch and Test
 
-- Install dependencies:
+### 1. Install Dependencies
 
-  - `npm install`
+Install all required packages in both the frontend and backend:
+
+```bash
+# In both /client and /server directories
+npm install
 
 - Frontend (React):
 
